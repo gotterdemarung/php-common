@@ -1,0 +1,34 @@
+# inherit defaults
+inherit: true
+
+# tools config
+tools:
+    php_cpd:
+        command: phpcpd
+        filter:
+            excluded_paths: ["vendor", "tests"]
+
+    php_code_sniffer:
+        extensions:
+            - php
+        command: phpcs
+        enabled: true
+        config:
+            tab_width: 4
+            standard: PSR2
+        filter:
+            paths: ["src"]
+            excluded_paths: ["vendor", "tests"]
+
+    php_code_coverage:
+        test_command: phpunit tests/
+
+    php_mess_detector:
+        filter:
+            paths: ["src"]
+            excluded_paths: ["vendor", "tests"]
+
+    php_analyzer:
+        filter:
+            paths: ["src"]
+            excluded_paths: ["vendor", "tests"]
