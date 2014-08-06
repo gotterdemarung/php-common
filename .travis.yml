@@ -6,6 +6,6 @@ php:
   - hhvm
 
 before_script:
-  - cd tests
+  - composer install
 
-script: phpunit --no-globals-backup
+script: phpunit --no-globals-backup tests/
