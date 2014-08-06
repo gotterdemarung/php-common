@@ -1,6 +1,12 @@
 # inherit defaults
 inherit: true
 
+# checks
+checks:
+    php:
+        code_rating: true
+        duplication: true
+
 # tools config
 tools:
     php_cpd:
