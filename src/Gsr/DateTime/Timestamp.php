@@ -3,7 +3,8 @@
 namespace Gsr\DateTime;
 
 /**
- * UTC time holder with microseconds precision
+ * Represents UNIX timestamp with microseconds precision
+ * Timestamps are always UTC
  *
  * @package Gsr\DateTime
  */
@@ -62,10 +63,10 @@ class Timestamp implements InstantInterface
     }
 
     /**
-     * Returns true, if timestamp of instant equals provided one
+     * Returns true if timestamp value of instant equals to provided one
      *
-     * @param int|float|Timestamp $value
-     * @return bool
+     * @param mixed $value
+     * @return boolean
      */
     public function equals($value)
     {
@@ -75,7 +76,7 @@ class Timestamp implements InstantInterface
             case is_int($value):
             case is_float($value):
                 return $value == $this->toFloat();
-            case $value instanceof Timestamp:
+            case $value instanceof InstantInterface:
                 return $value->toFloat() === $this->toFloat();
             default:
                 return false;

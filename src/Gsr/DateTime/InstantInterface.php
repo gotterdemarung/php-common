@@ -2,6 +2,11 @@
 
 namespace Gsr\DateTime;
 
+/**
+ * Represents time point
+ *
+ * @package Gsr\DateTime
+ */
 interface InstantInterface
 {
     /**
@@ -24,4 +29,12 @@ interface InstantInterface
      * @return \DateTime
      */
     public function toDateTime();
+
+    /**
+     * Returns true if timestamp value of instant equals to provided one
+     *
+     * @param mixed $value
+     * @return boolean
+     */
+    public function equals($value);
 }

@@ -4,6 +4,11 @@ namespace Gsr\DateTime;
 
 use Gsr\Exception\Argument\NotIntegerException;
 
+/**
+ * Represents local (bound to provided timezone) time
+ *
+ * @package Gsr\DateTime
+ */
 class LocalTime implements InstantInterface
 {
     private $year;
@@ -187,7 +192,7 @@ class LocalTime implements InstantInterface
      */
     public function toFloat()
     {
-        return $this->toInt() + ($this->getMinute() / 1000000);
+        return $this->toInt() + ($this->getMicroseconds() / 1000000);
     }
 
     /**
@@ -211,5 +216,26 @@ class LocalTime implements InstantInterface
         $dt->setDate($this->getYear(), $this->getMonth(), $this->getDay());
         $dt->setTime($this->getHour(), $this->getMinute(), $this->getSecond());
         return $dt;
+    }
+
+    /**
+     * Returns true if timestamp value of instant equals to provided one
+     *
+     * @param mixed $value
+     * @return boolean
+     */
+    public function equals($value)
+    {
+        switch (true) {
+            case $value === null:
+                return false;
+            case is_int($value):
+            case is_float($value):
+                return $value == $this->toFloat();
+            case $value instanceof InstantInterface:
+                return $value->toFloat() === $this->toFloat();
+            default:
+                return false;
+        }
     }
 }

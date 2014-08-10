@@ -4,6 +4,11 @@ namespace Gsr\DateTime;
 
 use Gsr\Exception\Argument\NotStringException;
 
+/**
+ * Time provider
+ *
+ * @package Gsr\DateTime
+ */
 class Calendar
 {
     private static $instance;
@@ -78,7 +83,7 @@ class Calendar
     public function parse($value)
     {
         switch (true) {
-            case $value instanceof Timestamp:
+            case $value instanceof InstantInterface:
                 return new Timestamp($value->toFloat());
             case $value instanceof \DateTimeInterface:
                 return new Timestamp($value->getTimestamp());
@@ -105,7 +110,15 @@ class Calendar
             throw new NotStringException('value');
         }
 
-        return $this->parse(new \DateTime($value, $this->getTimeZone()));
+        try {
+            return $this->parse(new \DateTime($value, $this->getTimeZone()));
+        } catch (\Exception $e) {
+            throw new \InvalidArgumentException(
+                'Unable to parse time string ' . $value,
+                $e->getCode(),
+                $e
+            );
+        }
     }
 
     /**
