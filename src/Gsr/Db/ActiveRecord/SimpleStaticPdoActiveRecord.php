@@ -388,7 +388,7 @@ abstract class SimpleStaticPdoActiveRecord implements \ArrayAccess
                 $total  = implode(', ', $total);
                 $pk     = self::PRIMARY_KEY;
                 $stmt = $this->getPdoConnection($table)->prepare(
-                    "UPDATE {$table} SET {$total} WHERE `{$pk}` = :{$pk} LIMIT 1"
+                    "UPDATE {$table} SET {$total} WHERE `{$pk}` = :{$pk}"
                 );
                 $replacements = array_combine($ph, $values);
                 $replacements[$pk] = $this->getId();
