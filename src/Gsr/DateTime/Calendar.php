@@ -85,6 +85,7 @@ class Calendar
         switch (true) {
             case $value instanceof InstantInterface:
                 return new Timestamp($value->toFloat());
+            case $value instanceof \DateTime:
             case $value instanceof \DateTimeInterface:
                 return new Timestamp($value->getTimestamp());
             case is_int($value):
