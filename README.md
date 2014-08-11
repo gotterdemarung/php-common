@@ -7,6 +7,7 @@
 
 Mini library for everyday needs
 
-* `Gsr\DateTime` - Date & time manipulation tools
-* `Gsr\Exception` - Common exceptions
-* `Gsr\Validation` - Common validation tools
+* `Gsr\DateTime\*` - Date & time manipulation tools
+* `Gsr\Db\ActiveRecord\SimpleStaticPdoActiveRecord` - simple, but powerful active record
+* `Gsr\Exception\*` - Common exceptions
+* `Gsr\Validation\*` - Common validation tools
